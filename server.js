@@ -6,7 +6,17 @@ const require = createRequire(import.meta.url);
 const sdk = require("./.api/apis/spruce/index.js"); // your Spruce SDK instance
 
 const app = express();
-app.use(express.json());
+app.use(express.json({limit:"1mb"})); // parse JSON
+
+app.post("/webhook", (req, res) => {
+  // Optional: verify signature here
+  console.log("Webhook:", req.headers, req.body);
+  res.status(200).send("ok"); // ACK immediately
+  // process asynchronously if needed
+});
+
+app.get("/", (_req, res) => res.send("healthy"));
+app.listen(process.env.PORT || 3000);
 
 // OpenAI client
 const ai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
