@@ -1,20 +1,22 @@
+# Dockerfile
 FROM node:20-alpine
 
+ENV NODE_ENV=production
 WORKDIR /app
 
-# Copy root package files
+# 1) Copy manifests first for layer caching
 COPY package*.json ./
 COPY .api/apis/spruce/package*.json .api/apis/spruce/
 
-# Install dependencies
-RUN npm install
+# 2) Install root deps and force-install SDK deps that live in the submodule
+RUN npm install && \
+    npm install oas api json-schema-to-ts
 
-# Copy all source
+# 3) Copy application source
 COPY . .
 
-# Expose port (adjust if service later binds to a specific one)
+# 4) Default port; adjust if needed
 EXPOSE 3000
 
-# Run entrypoint directly
-CMD ["node", ".api/apis/spruce/index.js"]
-
+# 5) Start your web service (expects a server.js you created)
+CMD ["node", "server.js"]
