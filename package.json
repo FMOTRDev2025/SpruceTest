@@ -2,8 +2,8 @@
   "name": "spruce-service",
   "version": "1.0.0",
   "type": "module",
-  "scripts": { "start": "node server.js" },
   "engines": { "node": "20.x" },
+  "scripts": { "start": "node server.js" },
   "dependencies": {
     "@api/spruce": "file:.api/apis/spruce",
     "api": "^6.1.3",
