@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "apis": [
+    {
+      "identifier": "spruce",
+      "source": "@spruce/v1.0#5ez2u2hmehhuiqd",
+      "integrity": "sha512-Z3OOhjhrQCqtnzRLoiUZRjWspJNYJaR550qmvMHtE8W29xu+nHjVT8Ll17k69/DyaNtXBeONmsxQpPWkoViIpQ==",
+      "installerVersion": "6.1.3"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@api/spruce": "file:.api/apis/spruce"
+  }
+}
