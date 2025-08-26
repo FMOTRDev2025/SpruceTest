@@ -1,11 +1,21 @@
+// server.js
 import express from "express";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
-// Load CJS SDK correctly
-const SDK = require("./.api/apis/spruce/index.js");
+// Require the CJS SDK and normalize exports
+const mod = require("./.api/apis/spruce/index.js");
+const SDK =
+  typeof mod === "function"
+    ? mod
+    : (mod && typeof mod.default === "function" && mod.default) ||
+      (mod && typeof mod.SDK === "function" && mod.SDK);
 
-const sdk = new SDK(); // now works
+if (typeof SDK !== "function") {
+  throw new Error("SDK constructor not found. Check .api/apis/spruce/index.js export.");
+}
+
+const sdk = new SDK();
 
 const app = express();
 app.get("/ping", (_req, res) => res.json({ status: "ok" }));
