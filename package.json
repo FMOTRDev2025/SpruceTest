@@ -2,4 +2,7 @@
   "dependencies": {
     "@api/spruce": "file:.api/apis/spruce"
   }
+  "scripts": {
+    "start": "node server.js"
+  }
 }
